@@ -22,7 +22,7 @@ namespace API.Controllers
         [HttpGet("{termino}")]
         public async Task<ActionResult> Get(string termino)
         {
-            var respuesta = await _httpHelper.GetAsync($"{URL_API}?q={termino}");
+            var respuesta = await _httpHelper.GetAsync($"{URL_API}?q={termino}"); 
             if (!respuesta.IsSuccessStatusCode)
                 return StatusCode((int)HttpStatusCode.InternalServerError, new { Message = "Error al solicitar búsqueda" });
 
