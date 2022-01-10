@@ -94,7 +94,6 @@ namespace API.Tests.UnitTests
         [TestCase("123")]
         [TestCase("ppppp")]
         [TestCase("")]
-        [TestCase(null)]
         public async Task ObtenerPaisPorIdErroneo(string idPais)
         {
             // Preparación

@@ -1,10 +1,9 @@
 ﻿using API.DTOs;
 using API.Helpers;
-using API.Models;
+using API.Models.Data;
+using API.Repository;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +15,15 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : Controller
     {
-        private readonly NubimetricsExampleContext _context;
+        private readonly IEFRepository<Usuario> _repository;
         private readonly IMapper _mapper;
         private readonly IPasswordService _passwordHelper;
 
-        public UsuariosController(NubimetricsExampleContext context,
+        public UsuariosController(IEFRepository<Usuario> context,
                                   IMapper mapper,
                                   IPasswordService passwordHelper)
         {
-            _context = context;
+            _repository = context;
             _mapper = mapper;
             _passwordHelper = passwordHelper;
         }
@@ -32,9 +31,9 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var usuarios = await _context.Usuarios.Where(usuarios => usuarios.Habilitado).ToListAsync();
+            var usuarios = await _repository.Get();
 
-            var usuariosDto = _mapper.Map<List<UsuarioDto>>(usuarios);
+            var usuariosDto = _mapper.Map<List<UsuarioDto>>(usuarios.Where(usuario => usuario.Habilitado.Value));
 
             return Ok(usuariosDto);
         }
@@ -42,9 +41,9 @@ namespace API.Controllers
         [HttpGet("{id}", Name = "ObtenerUsuario")]
         public async Task<ActionResult> Get(int id)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(usuario => (usuario.Id == id) && usuario.Habilitado);
+            var usuario = await _repository.Get(id);
 
-            if (usuario == null) return NotFound();
+            if (usuario == null || !usuario.Habilitado.Value) return NotFound();
 
             var usuarioDto = _mapper.Map<UsuarioDto>(usuario);
 
@@ -58,8 +57,8 @@ namespace API.Controllers
 
             usuario.Password = _passwordHelper.Encriptar(usuario.Password);
 
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
+            await _repository.Post(usuario);
+            await _repository.Save();
 
             var usuarioDto = _mapper.Map<UsuarioDto>(usuario);
 
@@ -69,9 +68,9 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] UsuarioPutDto usuarioPutDto)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(usuario => (usuario.Id == id) && usuario.Habilitado);
+            var usuario = await _repository.Get(id);
 
-            if (usuario == null) return NotFound();
+            if (usuario == null || !usuario.Habilitado.Value) return NotFound();
 
             var userPassword = _passwordHelper.Desencriptar(usuario.Password);
 
@@ -79,21 +78,25 @@ namespace API.Controllers
             usuario.Password = usuarioPutDto.Password != userPassword ? _passwordHelper.Encriptar(usuario.Password) : usuario.Password;
             usuario.FechaModificado = DateTime.Now;
 
-            await _context.SaveChangesAsync();
+            await _repository.Put(usuario);
+            await _repository.Save();
+
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(usuario => (usuario.Id == id) && usuario.Habilitado);
+            var usuario = await _repository.Get(id);
 
-            if (usuario == null) return NotFound();
+            if (usuario == null || !usuario.Habilitado.Value) return NotFound();
 
             usuario.Habilitado = false;
             usuario.FechaModificado = DateTime.Now;
 
-            await _context.SaveChangesAsync();
+            await _repository.Put(usuario);
+            await _repository.Save();
+
             return NoContent();
         }
     }

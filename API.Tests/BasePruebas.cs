@@ -1,4 +1,6 @@
 using API.Helpers;
+using API.Models.Data;
+using API.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,13 +11,14 @@ namespace API.Tests
 {
     public class BasePruebas
     {
-        protected static NubimetricsExampleContext ConstruirContext(string nombreDB)
+        protected static IEFRepository<Usuario> ConstruirUsuariosRepository(string nombreDB)
         {
             var opciones = new DbContextOptionsBuilder<NubimetricsExampleContext>()
                 .UseInMemoryDatabase(nombreDB).Options;
 
             var dbContext = new NubimetricsExampleContext(opciones);
-            return dbContext;
+
+            return new EFRepository<Usuario>(dbContext);
         }
 
         protected static IMapper ConfigurarAutoMapper()

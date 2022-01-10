@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace API.Models
+namespace API.Models.Data
 {
     public partial class Usuario
     {
@@ -12,7 +12,7 @@ namespace API.Models
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public bool Habilitado { get; set; }
+        public bool? Habilitado { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime? FechaModificado { get; set; }
     }
