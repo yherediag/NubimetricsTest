@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Models.Migrations
 {
     [DbContext(typeof(NubimetricsExampleContext))]
-    [Migration("20220110173122_cl")]
-    partial class cl
+    [Migration("20220110220107_CreacionUsuarios")]
+    partial class CreacionUsuarios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
