@@ -12,6 +12,6 @@ Pasos para configurar la Base de datos:
 
 ## Patrones de diseños utilizados
 
-- [Repository](): Se usó este patron de diseño para la conexión con la base de datos, de esta manera, si se quiere cambiar a otro ORM, se modificar la clase que la implementa.
-- [Strategy](): Solamente se usó en PaisesController para realizar 2 tareas dependiendo del caso, si solicitaba informacion del pais Argentina, o de otro.
-- [DependencyInjection](): Basicamente se usó en todo el ejercicio, para separar las tareas de cada clase y no depender unas de otras.
+- [Repository](/README.md): Se usó este patron de diseño para la conexión con la base de datos, de esta manera, si se quiere cambiar a otro ORM, se modificar la clase que la implementa.
+- [Strategy](/README.md): Solamente se usó en PaisesController para realizar 2 tareas dependiendo del caso, si solicitaba informacion del pais Argentina, o de otro.
+- [DependencyInjection](/README.md): Basicamente se usó en todo el ejercicio, para separar las tareas de cada clase y no depender unas de otras.
