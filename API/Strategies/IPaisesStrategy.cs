@@ -5,6 +5,6 @@ namespace API.Strategies
 {
     public interface IPaisesStrategy
     {
-        public Task<object> TraerPais(string idPais, IHttpGetService httpHelper);
+        public Task<object> TraerPais(string idPais, IHttpHelper httpHelper);
     }
 }

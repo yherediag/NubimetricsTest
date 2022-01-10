@@ -5,7 +5,7 @@ using System.Text;
 
 namespace API.Helpers
 {
-    public class PasswordHelper : IPasswordService
+    public class PasswordHelper : IPasswordHelper
     {
         private static readonly string Key = "c92a25533b734dbfa7181a5c0dfdfbe1"; // String de 32Bytes[]
 

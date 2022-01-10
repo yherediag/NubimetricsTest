@@ -17,11 +17,11 @@ namespace API.Controllers
     {
         private readonly IEFRepository<Usuario> _repository;
         private readonly IMapper _mapper;
-        private readonly IPasswordService _passwordHelper;
+        private readonly IPasswordHelper _passwordHelper;
 
         public UsuariosController(IEFRepository<Usuario> context,
                                   IMapper mapper,
-                                  IPasswordService passwordHelper)
+                                  IPasswordHelper passwordHelper)
         {
             _repository = context;
             _mapper = mapper;

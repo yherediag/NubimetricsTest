@@ -87,7 +87,7 @@ namespace API.Tests.UnitTests
             Assert.IsNotNull(resultado);
 
             var repository2 = ConstruirUsuariosRepository(nombreBD);
-            var cantidad = (await repository2.Get()).Count;
+            var cantidad = ((List<Usuario>)await repository2.Get()).Count;
             Assert.AreEqual(1, cantidad);
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace API.Helpers
 {
-    public interface IPasswordService
+    public interface IPasswordHelper
     {
         string Encriptar(string password);
         string Desencriptar(string password);

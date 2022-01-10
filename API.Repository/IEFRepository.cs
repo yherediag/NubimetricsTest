@@ -5,7 +5,7 @@ namespace API.Repository
 {
     public interface IEFRepository<TEntity>
     {
-        public Task<IList<TEntity>> Get();
+        public Task<IEnumerable<TEntity>> Get();
 
         public Task<TEntity> Get(int id);
 

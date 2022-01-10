@@ -12,7 +12,7 @@ namespace API.Strategies
     {
         private const string URL_API = "https://api.mercadolibre.com/classified_locations/countries";
 
-        public async Task<object> TraerPais(string idPais, IHttpGetService httpHelper)
+        public async Task<object> TraerPais(string idPais, IHttpHelper httpHelper)
         {
             var respuesta = await httpHelper.GetAsync(URL_API);
             if (!respuesta.IsSuccessStatusCode)

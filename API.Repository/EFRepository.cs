@@ -19,7 +19,7 @@ namespace API.Repository
             _dbSet = context.Set<TEntity>();
         }
 
-        public async Task<IList<TEntity>> Get() => await _dbSet.ToListAsync();
+        public async Task<IEnumerable<TEntity>> Get() => await _dbSet.ToListAsync();
 
         public async Task<TEntity> Get(int id) => await _dbSet.FindAsync(id);
 

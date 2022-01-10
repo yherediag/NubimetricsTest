@@ -46,8 +46,9 @@ namespace API
             ));
             services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
 
-            services.AddSingleton<IPasswordService, PasswordHelper>();
-            services.AddHttpClient<IHttpGetService, HttpHelper>("HttpHelper");
+            services.AddSingleton<IPasswordHelper, PasswordHelper>();
+            services.AddSingleton<ILogHelper, LogHelper>();
+            services.AddHttpClient<IHttpHelper, HttpHelper>("HttpHelper");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

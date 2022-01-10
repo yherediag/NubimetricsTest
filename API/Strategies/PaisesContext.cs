@@ -14,7 +14,7 @@ namespace API.Strategies
             _paisesStrategy = strategy;
         }
 
-        public async Task<object> TraerPais(string idPais, IHttpGetService httpHelper)
+        public async Task<object> TraerPais(string idPais, IHttpHelper httpHelper)
         {
             return await _paisesStrategy.TraerPais(idPais, httpHelper);
         }

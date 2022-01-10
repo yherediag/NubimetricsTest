@@ -12,10 +12,10 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class PaisesController : Controller
     {
-        private readonly IHttpGetService _httpHelper;
+        private readonly IHttpHelper _httpHelper;
         private readonly IConfiguration _config;
 
-        public PaisesController(IHttpGetService httpHelper, IConfiguration config)
+        public PaisesController(IHttpHelper httpHelper, IConfiguration config)
         {
             _httpHelper = httpHelper;
             _config = config;

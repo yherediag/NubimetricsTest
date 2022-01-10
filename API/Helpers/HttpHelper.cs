@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace API.Helpers
 {
-    public class HttpHelper : IHttpGetService
+    public class HttpHelper : IHttpHelper
     {
         private readonly HttpClient _client;
 

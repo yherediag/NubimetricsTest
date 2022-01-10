@@ -45,7 +45,7 @@ namespace API.Tests
             return config;
         }
 
-        protected static IHttpGetService ConstruirHttpHelper()
+        protected static IHttpHelper ConstruirHttpHelper()
         {
             var httpClient = new HttpClient();
             var httpHelper = new HttpHelper(httpClient);

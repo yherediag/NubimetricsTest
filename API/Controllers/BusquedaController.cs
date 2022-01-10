@@ -11,10 +11,10 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class BusquedaController : Controller
     {
-        private readonly IHttpGetService _httpHelper;
+        private readonly IHttpHelper _httpHelper;
         private const string URL_API = "https://api.mercadolibre.com/sites/MLA/search";
 
-        public BusquedaController(IHttpGetService httpHelper)
+        public BusquedaController(IHttpHelper httpHelper)
         {
             _httpHelper = httpHelper;
         }

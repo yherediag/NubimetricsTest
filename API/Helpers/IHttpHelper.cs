@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace API.Helpers
 {
-    public interface IHttpGetService
+    public interface IHttpHelper
     {
         Task<HttpResponseMessage> GetAsync(string url);
     }
